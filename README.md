@@ -44,6 +44,7 @@ Either follow the choice A. or B. below to run Observium.
 
 > Note:
 > - You must replace passwords specified in environment parameters of both containers with your secure passwords instead.
+> - Requires a linked MySQL or MariaDB container (ex.: `--link observiumdb:observiumdb`).
 > - OBSERVIUM_BASE_URL supports AMD64 container only (plan to support ARM32v7 soon).
 
 
@@ -77,6 +78,21 @@ Either follow the choice A. or B. below to run Observium.
 ```
 
 ## Changes
+- [2024-01-15] Merge pull request [#35](https://github.com/somsakc/docker-observium/pull/35) into master branch
+  - Fixed TZ parameter in observium-init.sh file
+- [2024-01-14] Merge pull request [#34](https://github.com/somsakc/docker-observium/pull/34) into master branch
+  - Upgraded base image from Ubuntu 20.04 to 22.04 (amd64/Dockerfile)
+  - Upgraded related packages (e.g. php) to match Ubuntu 22.04 and enhanced build code (amd64/Dockerfile)
+  - Revised observium-init.sh file and supported upgarding container to higher Observium version (run "discovery.php -u" whenever container starts)
+  - Fixed warning message caused by supervisord.conf file
+- [2024-01-01] Built docker image with Observium CE 23.9.13005 on AMD64 platform only
+  - Merged pull request [#28](https://github.com/somsakc/docker-observium/pull/28) into master branch
+  - Revised amd64/observium-init.sh file by updating /etc/timezone and /etc/localtime in container image whenever TZ environment is specified. It will effect to rrd graph.
+  - Revised amd64/observium-init.sh file by using MYSQL_PWD variable with mysql command instead
+  - Revised amd64/Dockerfile file to remove mysql-server package
+- [2022-07-17] Built docker image with Observium CE 22.5.12042 on AMD64 platform only
+  - Fixed logrotate missing in amd64/Dockerfile
+  - Added libphp-phpmailer package in amd64/Dockerfile
 - [2021-11-01] Built docker image with Observium CE 21.10.11666 on AMD64 platform only
   - Added monitoring-plugins-basic, monitoring-plugins-common and monitoring-plugins-standard packages
 - [2021-08-26] Built docker image with Observium CE 20.9.10731 on AMD64 platform only
